@@ -39,20 +39,25 @@ class SpttestSchemaHandler implements SchemaHandler {
 
     @Override
     void useSchema(Connection connection, String name) {
-        log.debug("useSchema");
+        log.debug("useSchema ${name}");
         String useStatement = String.format(useSchemaStatement, name)
         log.debug("Executing SQL Set Schema Statement: ${useStatement}")
         
-        try {
-          log.debug("Try");
+        // Gather all the schemas
+        ResultSet schemas = connection.getMetaData().getSchemas()
+        Collection<String> schemaNames = []
+        while(schemas.next()) {
+          schemaNames.add(schemas.getString("TABLE_SCHEM"))
+        }
+
+        if ( schemaNames.contains(name) ) {
+          // The assumption seems to be that this will throw an exception if the schema does not exist, but pg silently continues...
           connection
                 .createStatement()
                 .execute(useStatement)
         }
-        catch ( Exception e ) {
-          log.error("problem trying to use schema - \"${useStatement}\"",e)
-          // Rethrow
-          throw e
+        else {
+          throw new RuntimeException("Attempt to use schema ${name} that does not exist according to JDBC metadata");
         }
 
         log.debug("useSchema completed OK");
