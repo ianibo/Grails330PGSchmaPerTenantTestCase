@@ -6,3 +6,8 @@ This test case requires a postgres database and a user with the ability to creat
 CREATE DATABASE spttest;
 CREATE USER spttest WITH PASSWORD 'spttest' SUPERUSER CREATEDB INHERIT LOGIN;
 GRANT ALL PRIVILEGES ON DATABASE spttest to spttest;
+
+
+# Realted Resources
+
+https://stackoverflow.com/questions/44576485/cant-get-gorm-schema-per-tenant-working-in-grails-3

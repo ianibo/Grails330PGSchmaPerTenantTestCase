@@ -65,7 +65,7 @@ class SpttestSchemaHandler implements SchemaHandler {
 
     @Override
     void useDefaultSchema(Connection connection) {
-        log.debug("useDefaultSchema");
+        log.debug("**useDefaultSchema**");
         useSchema(connection, defaultSchemaName)
     }
 
