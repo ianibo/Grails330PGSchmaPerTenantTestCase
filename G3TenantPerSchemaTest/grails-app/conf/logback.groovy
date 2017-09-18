@@ -24,6 +24,15 @@ appender('STDOUT', ConsoleAppender) {
 
 def targetDir = BuildSettings.TARGET_DIR
 if (Environment.isDevelopmentMode() && targetDir != null) {
+
+    logger ('grails.app.init', DEBUG)
+    logger ('grails.app.controllers', DEBUG)
+    logger ('grails.app.domains', DEBUG)
+    logger ('grails.app.jobs', DEBUG)
+    logger ('grails.app.services', DEBUG)
+    logger ('spttest', DEBUG)
+
+
     appender("FULL_STACKTRACE", FileAppender) {
         file = "${targetDir}/stacktrace.log"
         append = true

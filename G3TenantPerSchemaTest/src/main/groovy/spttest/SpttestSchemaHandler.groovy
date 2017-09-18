@@ -24,14 +24,14 @@ class SpttestSchemaHandler implements SchemaHandler {
     final String createSchemaStatement
     final String defaultSchemaName
 
-    OkapiSchemaHandler() {
+    SpttestSchemaHandler() {
         // useSchemaStatement = "SET SCHEMA %s"
         useSchemaStatement = "SET search_path TO %s,public"
         createSchemaStatement = "CREATE SCHEMA %s"
         defaultSchemaName = "public"
     }
 
-    OkapiSchemaHandler(String useSchemaStatement, String createSchemaStatement, String defaultSchemaName) {
+    SpttestSchemaHandler(String useSchemaStatement, String createSchemaStatement, String defaultSchemaName) {
         this.useSchemaStatement = useSchemaStatement
         this.createSchemaStatement = createSchemaStatement
         this.defaultSchemaName = defaultSchemaName
@@ -77,7 +77,7 @@ class SpttestSchemaHandler implements SchemaHandler {
     Collection<String> resolveSchemaNames(DataSource dataSource) {
         // If this is called by HibernateDatastore.java then the next step will be for the
         // addTenantForSchemaInternal method to be called for this db
-        log.debug("OkapiSchemaHandler::resolveSchemaNames called")
+        log.debug("SpttestSchemaHandler::resolveSchemaNames called")
         Collection<String> schemaNames = []
         Connection connection = null
         try {
@@ -96,7 +96,7 @@ class SpttestSchemaHandler implements SchemaHandler {
                 log.debug("Error closing SQL connection: $e.message", e)
             }
         }
-        log.debug("OkapiSchemaHandler::resolveSchemaNames called - returning ${schemaNames}")
+        log.debug("SpttestSchemaHandler::resolveSchemaNames called - returning ${schemaNames}")
         return schemaNames
     }
 }
