@@ -91,6 +91,7 @@ endpoints:
 
 ---
 hibernate:
+    format_sql: true
     cache:
         queries: false
         use_second_level_cache: false

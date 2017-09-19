@@ -26,7 +26,8 @@ class SpttestSchemaHandler implements SchemaHandler {
 
     SpttestSchemaHandler() {
         // useSchemaStatement = "SET SCHEMA %s"
-        useSchemaStatement = "SET search_path TO %s,public"
+        // useSchemaStatement = "SET search_path TO %s,public"
+        useSchemaStatement = "SET search_path TO %s"
         createSchemaStatement = "CREATE SCHEMA %s"
         defaultSchemaName = "public"
     }
